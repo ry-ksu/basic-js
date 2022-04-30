@@ -21,7 +21,7 @@ function getSeason(dateIn) {
     new Date(dateIn).toString() ==
       "Thu Jan 01 1970 08:36:32 GMT+0300 (Москва, стандартное время)"
   ) {
-    return new Error("Invalid date!");
+    throw new Error("Invalid date!");
   }
 
   let seasons = ["spring", "summer", "autumn", "winter"];
