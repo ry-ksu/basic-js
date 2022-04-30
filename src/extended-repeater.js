@@ -68,7 +68,7 @@ function repeater(str, options) {
   return result;
 }
 
-console.log(
+/*console.log(
   repeater(null, {
     repeatTimes: 3,
     separator: "??? ",
@@ -76,7 +76,7 @@ console.log(
     additionRepeatTimes: 3,
     additionSeparator: "!!!",
   })
-);
+);*/
 
 module.exports = {
   repeater,
