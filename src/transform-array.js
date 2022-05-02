@@ -13,10 +13,12 @@ const { NotImplementedError } = require("../extensions/index.js");
  * transform([1, 2, 3, '--discard-prev', 4, 5]) => [1, 2, 4, 5]
  *
  */
-function transform(arr) {
-  if (!Array.isArray(arr)) {
+function transform(arrIn) {
+  if (!Array.isArray(arrIn)) {
     throw new Error(`'arr' parameter must be an instance of the Array!`);
   }
+
+  let arr = arrIn.slice();
 
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] == "--double-next") {
@@ -66,9 +68,7 @@ function transform(arr) {
   return arr;
 }
 
-/*console.log(
-  transform([1, 2, 3, "--double-next", 1337, "--discard-prev", 4, 5])
-);*/
+//console.log(transform(3));
 
 module.exports = {
   transform,
