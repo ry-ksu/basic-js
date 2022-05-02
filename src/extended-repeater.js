@@ -16,9 +16,12 @@ const { NotImplementedError } = require("../extensions/index.js");
  *
  */
 function repeater(str, options) {
-
   if (!!options.addition || options.addition == false) {
     options.addition.toString();
+  }
+
+  if (options.addition === null) {
+    options.addition = "null";
   }
 
   if (!options.separator) {
@@ -68,7 +71,7 @@ function repeater(str, options) {
   return result;
 }
 
-/*console.log(
+console.log(
   repeater(null, {
     repeatTimes: 3,
     separator: "??? ",
@@ -76,7 +79,7 @@ function repeater(str, options) {
     additionRepeatTimes: 3,
     additionSeparator: "!!!",
   })
-);*/
+);
 
 module.exports = {
   repeater,
