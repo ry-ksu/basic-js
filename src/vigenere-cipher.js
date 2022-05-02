@@ -20,13 +20,77 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
 class VigenereCipheringMachine {
-  encrypt() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  arr_EN = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  
+  constructor(n) {
+    if (n == null || n == true) {
+      this.flag = true;
+    } else {
+    this.flag = n;
+    }
   }
-  decrypt() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+
+  encrypt(word, key) {
+    if (word == null || key == null) {
+      throw new Error ("Incorrect arguments!")
+    }
+
+    let wordArr = word.toUpperCase().split("")
+    let keyArr = key.toUpperCase().split("")
+    let result = ""
+    let index = 0;
+
+    for (let i = 0; i < wordArr.length; i++) {
+      if (key.length-1 < index) {
+        index = 0;
+      }
+      if (wordArr[i].match(/[A-Z]/)) {
+        let encrypt = this.arr_EN.indexOf(wordArr[i]) + this.arr_EN.indexOf(keyArr[index])
+        if (encrypt > 25) { encrypt -= 26; }
+        result += this.arr_EN[encrypt]
+        index++;
+      } else {
+        result += wordArr[i]
+      }
+    }
+
+    if (this.flag) {
+      return result;
+    } else {
+      return result.split("").reverse().join("")
+    }
+  }
+
+  decrypt(word, key) {
+    if (word == null || key == null) {
+      throw new Error ("Incorrect arguments!")
+    }
+
+    let wordArr = word.toUpperCase().split("")
+    let keyArr = key.toUpperCase().split("")
+    let result = ""
+    let index = 0;
+
+    for (let i = 0; i < wordArr.length; i++) {
+      if (key.length-1 < index) {
+        index = 0;
+      }
+      
+      if (wordArr[i].match(/[A-Z]/)) {
+        let encrypt = this.arr_EN.indexOf(wordArr[i]) - this.arr_EN.indexOf(keyArr[index])
+        if (encrypt < 0) { encrypt += 26; }
+        result += this.arr_EN[encrypt]
+        index++;
+      } else {
+        result += wordArr[i]
+      }
+    }
+
+    if (this.flag) {
+      return result;
+    } else {
+      return result.split("").reverse().join("")
+    }
   }
 }
 
