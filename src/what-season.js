@@ -16,11 +16,7 @@ function getSeason(dateIn) {
     return "Unable to determine the time of year!";
   }
 
-  if (
-    new Date(dateIn).toString() == "Invalid Date" ||
-    new Date(dateIn).toString() ==
-      "Thu Jan 01 1970 08:36:32 GMT+0300 (Москва, стандартное время)"
-  ) {
+  if (!(dateIn instanceof Date) || dateIn.hasOwnProperty("toString")) {
     throw new Error("Invalid date!");
   }
 
@@ -39,7 +35,7 @@ function getSeason(dateIn) {
   }
 }
 
-//console.log(getSeason(20192701));
+//console.log(getSeason(Date.prototype.toString.call(new Date())));
 //console.log(new Date(20192701).toString());
 
 module.exports = {
